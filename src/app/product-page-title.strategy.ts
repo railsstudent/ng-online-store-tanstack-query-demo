@@ -25,7 +25,6 @@ export class ProductPageTitleStrategy extends TitleStrategy {
             takeUntilDestroyed(this.destroyRef$),
           )
           .subscribe();
-
     } else {
       this.title.setTitle(customTitle);
     }
