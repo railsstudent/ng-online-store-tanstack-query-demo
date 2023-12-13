@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
       <app-nav-bar />
       <router-outlet />
     </div>`,
-  styles: [`
+  styles: `
     div {
       padding: 0.75rem;
     }
@@ -21,7 +21,7 @@ import { Title } from '@angular/platform-browser';
     h2 {
       margin-bottom: 0.75rem;
     }
-  `],
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
