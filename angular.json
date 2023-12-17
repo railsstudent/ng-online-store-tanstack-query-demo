@@ -50,7 +50,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "https://railsstudent.github.io/ng-online-store-tanstack-query-demo/"
             },
             "development": {
               "optimization": false,
