@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, forkJoin, map, of, shareReplay, switchMap } from 'rxjs';
-import { Product } from '../interfaces/product.interface';
 import { injectQuery } from '@ngneat/query';
+import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { Product } from '../interfaces/product.interface';
 
 const PRODUCTS_URL = 'https://fakestoreapi.com/products';
 const CATEGORIES_URL = 'https://fakestoreapi.com/products/categories';
@@ -19,7 +19,6 @@ export class ProductService {
     return this.query({
       queryKey: ['categories'] as const,
       queryFn: () => this.httpClient.get<string[]>(CATEGORIES_URL)
-        .pipe(shareReplay(1))
     })
   }
 
@@ -27,7 +26,6 @@ export class ProductService {
     return this.query({
       queryKey: ['products'] as const,
       queryFn: () => this.httpClient.get<Product[]>(PRODUCTS_URL)
-        .pipe(shareReplay(1))
     })
   }
 
@@ -66,7 +64,6 @@ export class ProductService {
             });
             return products;
           }),
-          shareReplay(1),
         )
     });
   }
