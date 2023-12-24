@@ -1,5 +1,9 @@
 # NgOnlineStoreTanstackQueryDemo
 
+This repo uses Angular 17 and TanStack/Query Angular V4 to demonstrate an online store and shopping cart.
+
+Github Page: https://railsstudent.github.io/ng-online-store-tanstack-query-demo/products
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
 
 ## Development server

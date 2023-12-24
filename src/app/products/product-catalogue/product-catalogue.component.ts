@@ -7,7 +7,7 @@ import { ProductListComponent } from '../product-list/product-list.component';
   standalone: true,
   imports: [FeatureProductsComponent, ProductListComponent],
   template: `
-    <app-feature-products [ids]="[4, 19]" />
+    <app-feature-products />
     <app-product-list />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
