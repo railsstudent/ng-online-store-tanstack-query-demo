@@ -17,6 +17,11 @@ export const routes: Routes = [
     title: 'My shopping cart',
   },
   {
+    path: 'categories/:category',
+    loadComponent: () => import('./categories/category-products/category-products.component').then((m) => m.CategoryProductsComponent),
+    title: 'Category',
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'products',

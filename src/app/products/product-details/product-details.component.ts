@@ -1,7 +1,8 @@
 import { AsyncPipe, TitleCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Injector, Input, numberAttribute, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject, numberAttribute, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ObservableQueryResult, SignalQueryResult } from '@ngneat/query';
+import { RouterLink } from '@angular/router';
+import { ObservableQueryResult } from '@ngneat/query';
 import { CartService } from '../../carts/services/cart.service';
 import { Product } from '../interfaces/product.interface';
 import { ProductService } from '../services/product.service';
@@ -9,7 +10,7 @@ import { ProductService } from '../services/product.service';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [TitleCasePipe, FormsModule, AsyncPipe],
+  imports: [TitleCasePipe, FormsModule, AsyncPipe, RouterLink],
   template: `
     <div>
       @if(product$ | async; as product) {
@@ -29,7 +30,9 @@ import { ProductService } from '../services/product.service';
               </div>
               <div class="row">
                 <span>Category: </span>
-                <span>{{ data.category | titlecase }}</span>
+                <span>
+                  <a [routerLink]="['/categories', data.category]">{{ data.category | titlecase }}</a>
+                </span>
               </div>
               <div class="row">
                 <span>Name: </span>
