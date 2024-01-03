@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'products',
-    loadComponent: () => import('./products/product-catalogue/product-catalogue.component').then((m) => m.ProductCatalogueComponent),
+    loadComponent: () => import('./categories/product-catalogue/product-catalogue.component').then((m) => m.ProductCatalogueComponent),
     title: 'Product list',
   },
   {

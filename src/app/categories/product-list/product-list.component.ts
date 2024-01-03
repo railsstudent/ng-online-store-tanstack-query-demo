@@ -1,9 +1,10 @@
 import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { intersectResults } from '@ngneat/query';
-import { Product } from '../interfaces/product.interface';
-import { ProductComponent } from '../product/product.component';
-import { ProductService } from '../services/product.service';
+import { Product } from '../../products/interfaces/product.interface';
+import { ProductComponent } from '../../products/product/product.component';
+import { ProductService } from '../../products/services/product.service';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-product-list',
@@ -47,10 +48,11 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductListComponent {
   productService = inject(ProductService);
+  categoryService = inject(CategoryService);
 
   categoryProducts = intersectResults(
     { 
-      categories: this.productService.getCategories().result, 
+      categories: this.categoryService.getCategories().result, 
       products: this.productService.getProducts().result
     },
     ({ categories, products }) => 
