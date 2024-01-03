@@ -5,7 +5,7 @@ import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
-    standalone: true,
+  standalone: true,
   imports: [FormsModule],
   template: `
     <div class="row">
