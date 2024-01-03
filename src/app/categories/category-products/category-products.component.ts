@@ -1,6 +1,6 @@
 import { AsyncPipe, TitleCasePipe } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ObservableQueryResult } from '@ngneat/query';
 import { Product } from '../../products/interfaces/product.interface';
 import { ProductComponent } from '../../products/product/product.component';
 import { CategoryService } from '../services/category.service';
@@ -10,16 +10,22 @@ import { CategoryService } from '../services/category.service';
   standalone: true,
   imports: [AsyncPipe, ProductComponent, TitleCasePipe],
   template: `
-    <h2>{{ category | titlecase }}</h2>
+    <h2>{{ category | titlecase }}</h2>      
     @if (products$ | async; as products) {
-      @if (products.length) {
-      <div class="products">
-        @for(product of products; track product.id) {
-          <app-product [product]="product" />
+      @if(products.isLoading) {
+        <p>Loading...</p>
+      } @else if (products.isError) {
+        <p>Error: {{ products.error.message }}</p>
+      } @else if(products.isSuccess) {
+        @if (products.data.length > 0) {
+          <div class="products">
+            @for(product of products.data; track product.id) {
+              <app-product [product]="product" />
+            }
+          </div>
+        } @else {
+          <p>Category does not have products</p>
         }
-      </div>
-      } @else {
-        <p>Category does not have products</p>
       }
     }
   `,
@@ -42,9 +48,9 @@ export class CategoryProductsComponent implements OnInit {
   category!: string;
 
   categoryService = inject(CategoryService);
-  products$!: Observable<Product[]>;
+  products$!: ObservableQueryResult<Product[], Error>;
 
   ngOnInit(): void {
-    this.products$ = this.categoryService.getCategory(this.category);
+    this.products$ = this.categoryService.getCategory(this.category).result$;
   }
 }
