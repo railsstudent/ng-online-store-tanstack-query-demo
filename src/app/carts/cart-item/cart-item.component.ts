@@ -39,7 +39,6 @@ import { CartService } from '../services/cart.service';
 })
 export class CartItemComponent {
   cartService = inject(CartService);
-  cart = this.cartService.cart;
 
   @Input({ required: true })
   item!: CartItem;
