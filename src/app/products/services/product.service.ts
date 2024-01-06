@@ -24,7 +24,8 @@ export class ProductService {
   getProduct(id: number) {
     return this.query({
       queryKey: ['products', id] as const,
-      queryFn: () => this.getProductQuery(id)
+      queryFn: () => this.getProductQuery(id),
+      staleTime: 2 * 60 * 1000,
     });
   }
 
@@ -56,7 +57,7 @@ export class ProductService {
             });
             return products;
           }),
-        )
+        ),
     });
   }
 }
