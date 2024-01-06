@@ -16,7 +16,7 @@ export class ProductPageTitleStrategy extends TitleStrategy {
     const customTitle = this.buildTitle(snapshot) || '';
     const productId = snapshot.root.firstChild?.params['id'] || '';
     if (productId) {
-        this.subscription = this.productService.getProduct(productId).result$
+        this.subscription = this.productService.getProduct(+productId).result$
           .pipe(
             map((product) => product.data?.title || ''),
             map((productTitle) => `Product - ${productTitle}`),
