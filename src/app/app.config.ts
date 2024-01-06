@@ -6,7 +6,7 @@ import { provideQueryDevTools } from '@ngneat/query-devtools';
 import { routes } from './app.routes';
 import { ProductPageTitleStrategy } from './product-page-title.strategy';
 
-const FIVE_MINUTES = 2 * 60 * 1000;
+const STALE_TIME = 2 * 60 * 1000;
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideQueryClientOptions({
       defaultOptions: {
         queries: {
-          staleTime: FIVE_MINUTES,
+          staleTime: STALE_TIME,
         },
       },
     }),
