@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FeatureProductsComponent } from '../feature-products/feature-products.component';
+import { FeatureProductsComponent } from '../../products/feature-products/feature-products.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({

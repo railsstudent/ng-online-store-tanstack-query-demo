@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'products',
-    loadComponent: () => import('./products/product-catalogue/product-catalogue.component').then((m) => m.ProductCatalogueComponent),
+    loadComponent: () => import('./categories/product-catalogue/product-catalogue.component').then((m) => m.ProductCatalogueComponent),
     title: 'Product list',
   },
   {
@@ -15,6 +15,11 @@ export const routes: Routes = [
     path: 'my-cart',
     loadComponent: () => import('./carts/cart/cart.component').then((m) => m.CartComponent),
     title: 'My shopping cart',
+  },
+  {
+    path: 'categories/:category',
+    loadComponent: () => import('./categories/category-products/category-products.component').then((m) => m.CategoryProductsComponent),
+    title: 'Category',
   },
   {
     path: '',

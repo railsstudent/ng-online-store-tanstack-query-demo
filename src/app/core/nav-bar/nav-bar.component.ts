@@ -1,7 +1,6 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { tap } from 'rxjs';
 import { isCurrentUrlIncludedFn } from './utilities/is-current-url-included';
 
 @Component({
@@ -15,7 +14,11 @@ import { isCurrentUrlIncludedFn } from './utilities/is-current-url-included';
       } @else {
         <span>&nbsp;</span>
       }
-      <a [routerLink]="['my-cart']">View Cart</a>
+      @if (isShowViewCartButton$ | async) {
+        <a [routerLink]="['my-cart']">View Cart</a>
+      } @else {
+        <span>&nbsp;</span>
+      }
     </div>
   `,
   styles: [`
@@ -33,7 +36,6 @@ import { isCurrentUrlIncludedFn } from './utilities/is-current-url-included';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavBarComponent {
-  cdr = inject(ChangeDetectorRef);
-  isShowHomeButton$ = isCurrentUrlIncludedFn('/', '/products')
-    .pipe(tap(() => this.cdr.markForCheck()));
+  isShowHomeButton$ = isCurrentUrlIncludedFn('/', '/products');
+  isShowViewCartButton$ = isCurrentUrlIncludedFn('/my-cart');
 }

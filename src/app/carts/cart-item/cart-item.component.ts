@@ -1,15 +1,18 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { CartItem } from '../interfaces/cart.interface';
 import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
-    standalone: true,
-  imports: [FormsModule],
+  standalone: true,
+  imports: [FormsModule, RouterLink],
   template: `
     <div class="row">
-      <p style="width: 10%">{{ item.id }}</p>
+      <p style="width: 10%">
+        <a [routerLink]="['/products', item.id]">{{ item.id }}</a>
+      </p>
       <p style="width: 20%">{{ item.title }}</p>
       <p style="width: 40%">{{ item.description }}</p>
       <p style="width: 10%">{{ item.price }}</p>
@@ -39,7 +42,6 @@ import { CartService } from '../services/cart.service';
 })
 export class CartItemComponent {
   cartService = inject(CartService);
-  cart = this.cartService.cart;
 
   @Input({ required: true })
   item!: CartItem;
