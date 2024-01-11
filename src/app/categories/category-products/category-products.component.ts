@@ -1,5 +1,5 @@
 import { AsyncPipe, TitleCasePipe } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { ObservableQueryResult } from '@ngneat/query';
 import { Product } from '../../products/interfaces/product.interface';
 import { ProductComponent } from '../../products/product/product.component';
@@ -41,7 +41,8 @@ import { CategoryService } from '../services/category.service';
       height: 300px;
       margin-bottom: 1rem;
     }
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryProductsComponent implements OnInit {
   @Input({ required: true })
